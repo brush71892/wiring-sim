@@ -4,9 +4,9 @@ using UnityEngine.InputSystem;
 
 // MAKES WIRES GO BACK TO START IF THEY ARE TOO SHORT, FIX THIS
 
-public class FihPlacing : MonoBehaviour
+public class WirePlacement : MonoBehaviour
 {
-    public MaxBlue wireScript;
+    public WireScript wireScript;
     private bool isPlacing = false;
     private bool movingWire = false;
     private int clickRadius = 5;
