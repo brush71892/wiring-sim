@@ -5,25 +5,22 @@ using UnityEngine.InputSystem;
 
 public class WireScript : MonoBehaviour
 {
-    [SerializeField] private LineRenderer linePrefab;
+
+    public List<LineRenderer> linePrefabs;
+
+    public int dih = 67;
     public List<Vector2> point1 = new List<Vector2>();
     public List<Vector2> point2 = new List<Vector2>();
     public List<int> connection1 = new List<int>();
     public List<int> connection2 = new List<int>();
+    public List<int> wireType = new List<int>();
 
     private List<LineRenderer> activeLines = new List<LineRenderer>();
     private int index;
 
-    void Update()
-    {
-        if (Keyboard.current != null)
-        {
-            if (Keyboard.current.fKey.isPressed) Debug.Log(string.Join(", ", connection1));  
-            if (Keyboard.current.vKey.isPressed) Debug.Log(string.Join(", ", connection2));  
-        }
-    }
+    void Update() {}
     
-    public void AddWire(Vector2 pointone, Vector2 pointtwo)
+    public void AddWire(Vector2 pointone, Vector2 pointtwo, int type)
     {
         point1.Add(pointone);
         point2.Add(pointtwo);
@@ -31,8 +28,9 @@ public class WireScript : MonoBehaviour
         connection2.Add(point1.Count-1);
         connection1.Add(point1.Count-2);
         connection2.Add(-1);
+        wireType.Add(type);
 
-        LineRenderer newLine = Instantiate(linePrefab, Vector3.zero, Quaternion.identity);
+        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
         newLine.positionCount = 2;
         newLine.SetPosition(0, pointone);
         newLine.SetPosition(1, pointtwo);

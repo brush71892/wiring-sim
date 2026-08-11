@@ -9,21 +9,56 @@ public class WirePlacement : MonoBehaviour
     public WireScript wireScript;
     private bool isPlacing = false;
     private bool movingWire = false;
+    private bool isSelecting = false;
     private int clickRadius = 5;
 
     void Update()
     {
         if (Keyboard.current != null && isPlacing == false)
         {
-            if (Keyboard.current.cKey.wasPressedThisFrame)
+            if (Keyboard.current.vKey.wasPressedThisFrame)
             {
                 // add code detecting if branching off of another wire
                 Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
                 Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+                isSelecting = true;
 
-                wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y));
-
-                isPlacing = true;
+                // wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y), 0);
+            }
+            if (isSelecting == true)
+            {
+                if (Keyboard.current.digit1Key.wasPressedThisFrame)
+                {
+                    Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+                    wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y), 0);
+                    isSelecting = false;
+                    isPlacing = true;
+                }
+                if (Keyboard.current.digit2Key.wasPressedThisFrame)
+                {
+                    Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+                    wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y), 1);
+                    isSelecting = false;
+                    isPlacing = true;
+                }
+                if (Keyboard.current.digit3Key.wasPressedThisFrame)
+                {
+                    Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+                    wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y), 2);
+                    isSelecting = false;
+                    isPlacing = true;
+                }
+                if (Keyboard.current.digit4Key.wasPressedThisFrame)
+                {
+                    Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
+                    Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
+                    wireScript.AddWire(new Vector2(worldPos.x, worldPos.y), new Vector2(worldPos.x, worldPos.y), 3);
+                    isSelecting = false;
+                    isPlacing = true;
+                }
             }
         }
         if (isPlacing == true)
