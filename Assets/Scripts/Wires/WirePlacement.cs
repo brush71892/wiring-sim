@@ -2,15 +2,24 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
-// MAKES WIRES GO BACK TO START IF THEY ARE TOO SHORT, FIX THIS
+// MAKES WIRES CONNECT TO THEMSELVES IF THEY ARE TOO SHORT<<
 
 public class WirePlacement : MonoBehaviour
 {
+    // bring in the wireScript
     public WireScript wireScript;
+
+    // detects if the user is placing a wire
     private bool isPlacing = false;
+
+    // detects if the user is moving a wire
     private bool movingWire = false;
+
+    // detects if the user is selecting a wire
     private bool isSelecting = false;
-    private int clickRadius = 5;
+
+    // determines how far the minimum distance is for the wire to auto-connect to another.
+    private int clickRadius = 4;
 
     void Update()
     {
@@ -19,6 +28,8 @@ public class WirePlacement : MonoBehaviour
             if (Keyboard.current.vKey.wasPressedThisFrame)
             {
                 // add code detecting if branching off of another wire
+
+                // find mouse position
                 Vector2 mouseScreenPos = Mouse.current.position.ReadValue();
                 Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mouseScreenPos.x, mouseScreenPos.y, 10f));
                 isSelecting = true;
