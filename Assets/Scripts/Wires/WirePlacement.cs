@@ -19,8 +19,9 @@ public class WirePlacement : MonoBehaviour
     private bool isSelecting = false;
 
     // determines how far the minimum distance is for the wire to auto-connect to another.
-    private int clickRadius = 4;
+    public double clickRadius = 0.4;
 
+    private bool hit = false;
     void Update()
     {
         if (Keyboard.current != null && isPlacing == false)
@@ -79,15 +80,58 @@ public class WirePlacement : MonoBehaviour
             wireScript.AdjustWire(new Vector2(worldPosition.x, worldPosition.y));
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                hit=false;
                 for (int i=0; i<wireScript.GetLength()-1; i++)
                 {
-                    if (wireScript.GetPoint1(i).x-0.5<worldPosition.x && wireScript.GetPoint1(i).x+0.5>worldPosition.x && wireScript.GetPoint1(i).y-0.5<worldPosition.y && wireScript.GetPoint1(i).y+0.5>worldPosition.y)
+                    if (!hit)
                     {
-                        wireScript.AdjustWire(wireScript.GetPoint1(i));
+                        
                     }
-                    else if (wireScript.GetPoint2(i).x-0.5<worldPosition.x && wireScript.GetPoint2(i).x+0.5>worldPosition.x && wireScript.GetPoint2(i).y-0.5<worldPosition.y && wireScript.GetPoint2(i).y+0.5>worldPosition.y)
+                    if (wireScript.GetPoint2(i).x-clickRadius<worldPosition.x && wireScript.GetPoint2(i).x+clickRadius>worldPosition.x && wireScript.GetPoint2(i).y-clickRadius<worldPosition.y && wireScript.GetPoint2(i).y+clickRadius>worldPosition.y)
                     {
-                        wireScript.AdjustWire(wireScript.GetPoint2(i));
+                        Debug.Log("2");
+                        /*
+                        if (wireScript.GetConnection1(1+(i*2))==-1) 
+                        {
+                            Debug.Log("connect1 open on p2");
+                            wireScript.AdjustConnection(i, false);
+                            wireScript.AdjustWire(wireScript.GetPoint2(i));
+                        }
+                        else if (wireScript.GetConnection2(1+(i*2))==-1)
+                        {
+                            Debug.Log("connect2 open on p2");
+                            wireScript.AdjustConnection(i, true);
+                            wireScript.AdjustWire(wireScript.GetPoint2(i));
+                        }
+                        else
+                        {
+                            Debug.Log("failed to find an open connection");
+                        }
+                        */
+                        hit=true;
+                    }
+                    else if (wireScript.GetPoint1(i).x-clickRadius<worldPosition.x && wireScript.GetPoint1(i).x+clickRadius>worldPosition.x && wireScript.GetPoint1(i).y-clickRadius<worldPosition.y && wireScript.GetPoint1(i).y+clickRadius>worldPosition.y)
+                    {
+                        Debug.Log("1");
+                        /*
+                        if (wireScript.GetConnection1(i*2)==-1) 
+                        {
+                            Debug.Log("connect1 open on p1");
+                            wireScript.AdjustConnection(i, false);
+                            wireScript.AdjustWire(wireScript.GetPoint1(i));
+                        }
+                        else if (wireScript.GetConnection2(i*2)==-1)
+                        {
+                            Debug.Log("connect2 open on p1");
+                            wireScript.AdjustConnection(i, true);
+                            wireScript.AdjustWire(wireScript.GetPoint1(i));
+                        }
+                        else
+                        {
+                            Debug.Log("failed to find an open connection");
+                        }
+                        */
+                        hit=true;
                     }
                 }
                 isPlacing = false;

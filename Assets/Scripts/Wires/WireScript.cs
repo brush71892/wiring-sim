@@ -7,8 +7,6 @@ public class WireScript : MonoBehaviour
 {
 
     public List<LineRenderer> linePrefabs;
-
-    public int dih = 67;
     public List<Vector2> point1 = new List<Vector2>();
     public List<Vector2> point2 = new List<Vector2>();
     public List<int> connection1 = new List<int>();
@@ -17,6 +15,7 @@ public class WireScript : MonoBehaviour
 
     private List<LineRenderer> activeLines = new List<LineRenderer>();
     private int index;
+    private int newConnection;
 
     void Update() {}
     
@@ -49,6 +48,12 @@ public class WireScript : MonoBehaviour
         }
     }
 
+    public void AdjustConnection(int index, bool thing)
+    {
+        newConnection = 2*(point1.Count-1);
+        if (thing) connection2[index]=newConnection; else connection1[index]=newConnection;
+    }
+
     public int GetLength()
     {
         return point1.Count;
@@ -62,5 +67,15 @@ public class WireScript : MonoBehaviour
     public Vector2 GetPoint2(int index)
     {
         return point2[index];
+    }
+
+    public int GetConnection1(int index)
+    {
+        return connection1[index];
+    }
+
+    public int GetConnection2(int index)
+    {
+        return connection2[index];
     }
 }
