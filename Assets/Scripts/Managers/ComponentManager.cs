@@ -5,13 +5,20 @@ public class ComponentManager : MonoBehaviour
 {
     [Header("Component Slots")]
     [SerializeField] private ComponentSlot[] slots = new ComponentSlot[10];
+    // component slot identifications: 1-battery, 2-breaker, 3- not added
+    
+    public WireScript wireScript;
+    public List<string> componentSlots;
 
     private GameObject previewObject;
 
     private bool placementMenuOpen = false;
     private bool placing = false;
+    
+    private int placementNumber;
 
     public float placementViewOpacity = 0.5f;
+
 
     void Update()
     {
@@ -26,6 +33,7 @@ public class ComponentManager : MonoBehaviour
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
                 Place();
+                PortConfigs(placementNumber);
 
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
                 CancelPlacement();
@@ -67,6 +75,7 @@ public class ComponentManager : MonoBehaviour
 
         placementMenuOpen = false;
         placing = true;
+        placementNumber = slot;
     }
 
     void FollowMouse()
@@ -87,6 +96,14 @@ public class ComponentManager : MonoBehaviour
 
         previewObject = null;
         placing = false;
+    }
+
+    void PortConfigs(int slot) {
+        Vector3 mouse = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mouse.z = 0;
+
+        if (slot == 0) wireScript.AddPortWConnect1(new Vector2(mouse.x + 5, mouse.y + 5), new Vector2(mouse.x + 7, mouse.y + 7), 1);
+            // fill rest of cases here, portwconnect1 and 2 should attach to assigned objects, limiting wire placement 
     }
 
     void CancelPlacement()

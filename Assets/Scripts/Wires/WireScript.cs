@@ -37,6 +37,36 @@ public class WireScript : MonoBehaviour
         activeLines.Add(newLine);
     }
 
+    public void AddPortWConnect1(Vector2 pointone, Vector2 pointtwo, int id) {
+        point1.Add(pointone);
+        point2.Add(pointtwo);
+        connection1.Add(36894); // placeholder item for connection1, can be string for the pdh/roborio
+        connection2.Add(point1.Count-1);
+        connection1.Add(point1.Count-2);
+        connection2.Add(-1);
+        wireType.Add(id);
+
+        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
+        newLine.positionCount = 2;
+        newLine.SetPosition(0, pointone);
+        newLine.SetPosition(1, pointtwo);
+    }
+
+    public void AddPortWConnect2(Vector2 pointone, Vector2 pointtwo, int id) {
+        point1.Add(pointone);
+        point2.Add(pointtwo);
+        connection1.Add(-1);
+        connection2.Add(36894); // again, a placeholder
+        connection1.Add(point1.Count-2);
+        connection2.Add(-1);
+        wireType.Add(id);
+
+        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
+        newLine.positionCount = 2;
+        newLine.SetPosition(0, pointone);
+        newLine.SetPosition(1, pointtwo);
+    }
+
     public void AdjustWire(Vector2 newPos)
     {
         index = point1.Count - 1;
