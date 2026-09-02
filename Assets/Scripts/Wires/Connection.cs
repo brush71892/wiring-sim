@@ -5,13 +5,23 @@ using UnityEngine;
 public class Connection
 {
     public Vector2 position;
-    public int connNum;
+    public int connectionPort;
     public int connectionType;
 
-    public Connection(Vector2 pos, int connectionType, int connNum)
+    public Connection(Vector2 position, int connectionPort, int connectionType)
     {
-        position = pos;
+        this.position = position;
         this.connectionType = connectionType;
-        this.connNum = connNum;
+        this.connectionPort = connectionPort;
+    }
+
+    public int GetConnectionPort()
+    {
+        return connectionPort;
+    }
+
+    public void AdjustConnection(int connection)
+    {
+        connectionPort = connection;
     }
 }
