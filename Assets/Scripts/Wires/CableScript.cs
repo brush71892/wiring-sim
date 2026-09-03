@@ -14,7 +14,7 @@ public class CableScript : MonoBehaviour {
 
     void Update();
 
-    public void AddPortC1()
+    public void AddCable(Vector2 point1, Vector2 point2, int id)
     {
         point1.Add(pointone);
         point2.Add(pointtwo);
@@ -23,6 +23,11 @@ public class CableScript : MonoBehaviour {
         connection1.Add(point1.Count-2);
         connection2.Add(-1);
         wireType.Add(id);
+
+        cables.Add(new Cable(point1, point2, id));
+
+
+
 
         LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
         newLine.positionCount = 2;

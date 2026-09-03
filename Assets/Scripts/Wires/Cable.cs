@@ -38,4 +38,6 @@ public class Cable
         portReturn.Add(connection2port);
     }
 
+    public void SetConnection1(int input) {connection1.AdjustConnection(input);}
+    public void SetConnection2(int input) {connection2.AdjustConnection(input);}
 }

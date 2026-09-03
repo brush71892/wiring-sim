@@ -15,6 +15,11 @@ public class Connection
         this.connectionPort = connectionPort;
     }
 
+    public Connection(Vector2 position, Cable connection, Cable origin)
+    {
+        
+    }
+
     public int GetConnectionPort()
     {
         return connectionPort;
