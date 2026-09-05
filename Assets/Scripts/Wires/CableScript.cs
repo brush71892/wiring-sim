@@ -12,26 +12,15 @@ public class CableScript : MonoBehaviour {
     private int index;
     private int newConnection;
 
-    void Update();
+    void Update(){}
 
     public void AddCable(Vector2 point1, Vector2 point2, int id)
     {
-        point1.Add(pointone);
-        point2.Add(pointtwo);
-        connection1.Add(36894); // placeholder item for connection1, can be string for the pdh/roborio
-        connection2.Add(point1.Count-1);
-        connection1.Add(point1.Count-2);
-        connection2.Add(-1);
-        wireType.Add(id);
-
         cables.Add(new Cable(point1, point2, id));
 
-
-
-
-        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
+        LineRenderer newLine = Instantiate(linePrefabs[id], Vector3.zero, Quaternion.identity);
         newLine.positionCount = 2;
-        newLine.SetPosition(0, pointone);
-        newLine.SetPosition(1, pointtwo);
+        newLine.SetPosition(0, point1);
+        newLine.SetPosition(1, point2);
     }
 }

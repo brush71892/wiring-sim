@@ -22,7 +22,7 @@ public class Cable
     }
 
     public void UpdateFirstPosition(Vector2 newPosition){coordinates[0] = newPosition;}
-    public void UpdateSecondPosition(Vector2 newPosition){coordinate[0] = newPosition;}
+    public void UpdateSecondPosition(Vector2 newPosition){coordinates[0] = newPosition;}
     public void AdjustPosition(Vector2 move){coordinates[0] = coordinates[0]+move; coordinates[1] = coordinates[1]+move;}
 
     public void UpdatePorts(int port1, int port2)
@@ -33,9 +33,10 @@ public class Cable
 
     public List<int> GetConnections()
     {
-        portReturn.RemoveAll;
+        portReturn.Clear();
         portReturn.Add(connection1port);
         portReturn.Add(connection2port);
+        return portReturn;
     }
 
     public void SetConnection1(int input) {connection1.AdjustConnection(input);}

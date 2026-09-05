@@ -46,7 +46,7 @@ public class WireScript : MonoBehaviour
         connection2.Add(-1);
         wireType.Add(id);
 
-        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
+        LineRenderer newLine = Instantiate(linePrefabs[id], Vector3.zero, Quaternion.identity);
         newLine.positionCount = 2;
         newLine.SetPosition(0, pointone);
         newLine.SetPosition(1, pointtwo);
@@ -61,7 +61,7 @@ public class WireScript : MonoBehaviour
         connection2.Add(-1);
         wireType.Add(id);
 
-        LineRenderer newLine = Instantiate(linePrefabs[type], Vector3.zero, Quaternion.identity);
+        LineRenderer newLine = Instantiate(linePrefabs[id], Vector3.zero, Quaternion.identity);
         newLine.positionCount = 2;
         newLine.SetPosition(0, pointone);
         newLine.SetPosition(1, pointtwo);
