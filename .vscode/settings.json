@@ -67,5 +67,8 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "test realm.slnx"
+    "dotnet.defaultSolution": "test realm.slnx",
+    "githubPullRequests.ignoredPullRequestBranches": [
+        "main"
+    ]
 }
