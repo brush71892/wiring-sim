@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+// Each cable has two connections to other cables. The connection's 'connection' attribute is a cable, 
+// each cable is created in the cablescript.
+// hardware is created in the componentManager script and can also be accessed in the hardware script.
 public class Connection
 {
     public Vector2 position;
