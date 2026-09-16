@@ -1,11 +1,11 @@
-using UnityEngine;
+using UnityEngine; //No idea because it's a testscript rn?
 using TMPro;
 
 public class TestScript : MonoBehaviour
 {
     public Transform cam;
 
-    public TextMeshProUGUI teh;
+    public TextMeshProUGUI tehMeh;
 
     public Transform player;
 

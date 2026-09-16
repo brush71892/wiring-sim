@@ -1,4 +1,4 @@
-using System.Collections;
+using System.Collections; //Comment ALL OF THIS SO I UNDERSTAND MASON
 using System.Collections.Generic;
 using UnityEngine;
 

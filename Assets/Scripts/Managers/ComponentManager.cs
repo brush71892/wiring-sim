@@ -5,26 +5,25 @@ using System.Collections.Generic;
 
 public class ComponentManager : MonoBehaviour
 {
-    [Header("Component Slots")]
+    [Header("Component Slots")] //Creates a header in the inspector for the component slots
     [SerializeField] private ComponentSlot[] slots = new ComponentSlot[10];
     // component slot identifications: 1-battery, 2-breaker, 3- not added
     
-    public WireScript wireScript;
-    public List<string> componentSlots;
+    public WireScript wireScript; //Reference to the WireScript component, which is used to manage wire connections
+    public List<string> componentSlots; //List of component slot names, which is used to identify the components that can be placed
+    private GameObject previewObject; //Reference to the preview object, which is used to show where the component will be placed
 
-    private GameObject previewObject;
+    private bool placementMenuOpen = false; //Tracks whether the placement menu is open
+    private bool placing = false; //Tracks whether a component is currently being placed
 
-    private bool placementMenuOpen = false;
-    private bool placing = false;
-    
-    private int placementNumber;
+    private int placementNumber; //Tracks the index of the component slot that is currently being placed
 
-    public float placementViewOpacity = 0.5f;
+    public float placementViewOpacity = 0.5f; //The opacity of the placement preview object, which is used to make it semi-transparent
 
 
     void Update()
     {
-        OpenPlacementMenu();
+        OpenPlacementMenu();//Checks if cKey is pressed and if it is it opens the placement menu
 
         if (placementMenuOpen)
             CheckSlotSelection();
@@ -33,11 +32,11 @@ public class ComponentManager : MonoBehaviour
         {
             FollowMouse();
 
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.leftButton.wasPressedThisFrame)//Checks if the left mouse button is pressed and if it is it places the component
                 Place();
                 PortConfigs(placementNumber);
 
-            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)//Checks if the escape key is pressed and if it is it cancels the placement
                 CancelPlacement();
         }
     }
@@ -51,7 +50,7 @@ public class ComponentManager : MonoBehaviour
         }
     }
 
-    void CheckSlotSelection()
+    void CheckSlotSelection() //Will be changed into a drag and drop system later, but for now it will be a number key selection
     {
         if (Keyboard.current.digit1Key.wasPressedThisFrame) BeginPlacement(0);
         if (Keyboard.current.digit2Key.wasPressedThisFrame) BeginPlacement(1);
@@ -80,10 +79,10 @@ public class ComponentManager : MonoBehaviour
         placementNumber = slot;
     }
 
-    void FollowMouse()
+    void FollowMouse()//Makes the preview object follow the mouse position, so that the player can see where the component will be placed
     {
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-        mouse.z = 0;
+        mouse.z = 0;//Sets z to 0 so that the preview object is placed on the same plane as the other objects in the scene
 
         previewObject.transform.position = mouse;
     }
@@ -108,13 +107,13 @@ public class ComponentManager : MonoBehaviour
             // fill rest of cases here, portwconnect1 and 2 should attach to assigned objects, limiting wire placement 
     }
 
-    void CancelPlacement()
+    void CancelPlacement()//Stops the placement of the component and destroys the preview object
     {
-        Destroy(previewObject);
+        Destroy(previewObject);//Destroys preview
 
-        previewObject = null;
+        previewObject = null; //Resets which one is being previewed secretly
 
-        placing = false;
-        placementMenuOpen = false;
+        placing = false; //Stops the placing completely
+        placementMenuOpen = false; //Closes placementMenu
     }
 }
