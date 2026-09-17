@@ -1,4 +1,5 @@
-using UnityEngine;
+using UnityEngine; /*Supposed to be a ghost image which shows 
+where something will be placed when you are creating it */
 
 public class PlacementPreview : MonoBehaviour
 {

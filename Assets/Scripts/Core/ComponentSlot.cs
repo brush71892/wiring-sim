@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine; //Explain what this is supposed to do
 
 [System.Serializable]
 public class ComponentSlot

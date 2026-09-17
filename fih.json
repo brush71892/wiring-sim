@@ -1,0 +1,18 @@
+{
+  "name": "objectName",
+  "totalLeds": 0,
+  "crimped": [],
+  "defaultColors": [
+    {
+      "port": 0,
+      "color": "color"
+    },
+  ],
+  "dims": [
+    {
+      "type": "0",
+      "pos": [0, 0],
+      "dimensions": [0, 0]
+    },
+  ]
+}
